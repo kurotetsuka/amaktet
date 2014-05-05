@@ -7,7 +7,7 @@ clean:
 	rm -rf jar/*
 
 #variables
-version = 0.0.1a1
+version = 0.0.1
 cp = bin:lib/*:lib/lwjgl/jar/*
 dest = -d bin
 natives = -Djava.library.path=lib/lwjgl/native/linux
