@@ -1,0 +1,14 @@
+{
+	"include":[
+		"~/.game/user.json",
+		"config/prefs.json"],
+	"data":[
+		"data"],
+	//the folder in which resources are stored
+	"resources":[
+		"resource"],
+
+	//mods list
+	"mods":[
+		"testmod"]
+}

@@ -1,0 +1,16 @@
+#!/bin/bash
+natives="-Djava.library.path=libs/lwjgl/native/linux"
+#natives="-Djava.library.path=libs/lwjgl/native/macosx"
+#natives="-Djava.library.path=libs/lwjgl/native/solaris"
+#natives="-Djava.library.path=libs/lwjgl/native/windows"
+
+memory_min="256m"
+memory_max="512m"
+memory_min_arg="-Xms$memory_min"
+memory_max_arg="-Xms$memory_max"
+
+command="java $natives $memory_min_arg $memory_max_arg \
+	-jar jar/amaktet*.jar $@"
+
+echo $command
+$command

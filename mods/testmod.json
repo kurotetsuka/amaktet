@@ -1,0 +1,10 @@
+{
+	"name": "Test Mod",
+	"jar": "testmod.jar",
+	//game data files
+	"data":[
+		"data"],
+	//the folder in which resources are stored
+	"resources":[
+		"resource"]
+}

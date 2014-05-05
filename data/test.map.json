@@ -1,0 +1,17 @@
+{
+	"name": "test",
+	"tilesets": [
+		"volcano"],
+	"cells": [
+		{
+			"location": [ 0, 0, 0],
+			"tile": "chest_open"},
+		{
+			"location": [ 0, 1, 0],
+			"tile": "chest_closed"},
+		{
+			"location": [ 1, 0, 0],
+			"tile": "stairs"},
+		{
+			"location": [ 1, 1, 0],
+			"tile": "asdflsjfsdf"}]}
