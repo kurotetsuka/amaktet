@@ -104,13 +104,13 @@ public class Sprite implements ResourceContainer {
 			String title = config.getString( request = "title");
 			int fwidth = config.getInteger( request = "fwidth");
 			int fheight = config.getInteger( request = "fheight");
-			int cell_binding_x = config.getInteger(
+			int cell_binding_x = config.derefInteger(
 				request = "cell_binding.x");
-			int cell_binding_y = config.getInteger(
+			int cell_binding_y = config.derefInteger(
 				request = "cell_binding.y");
-			int cell_binding_width = config.getInteger(
+			int cell_binding_width = config.derefInteger(
 				request = "cell_binding.width");
-			int cell_binding_height = config.getInteger(
+			int cell_binding_height = config.derefInteger(
 				request = "cell_binding.height");
 
 			//set fields
@@ -205,8 +205,7 @@ public class Sprite implements ResourceContainer {
 			String frame_name = (String) key;
 			
 			//parse the frame's properties
-			JSONAdapter frame_adapter = frames.get(
-				frame_name.replaceAll( "\\.", ".."));
+			JSONAdapter frame_adapter = frames.get( frame_name);
 			try {
 				int tx = frame_adapter.getInteger( 0);
 				int ty = frame_adapter.getInteger( 1);

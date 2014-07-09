@@ -1,4 +1,4 @@
-## [amaktet](http://github.com/kurotetsuka/amaktet/) :: A game engine ##
+## [amaktet](http://github.com/kurotetsuka/amaktet/) :: a game engine ##
 
 By: kurotetsuka  
 This is a description.

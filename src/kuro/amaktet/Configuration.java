@@ -64,9 +64,8 @@ public class Configuration{
 					break;}}}
 
 	public void applyGuiSettings(){
-
-		javax.swing.JFrame.setDefaultLookAndFeelDecorated(true);
-		javax.swing.JDialog.setDefaultLookAndFeelDecorated(true);
+		javax.swing.JFrame.setDefaultLookAndFeelDecorated( true);
+		javax.swing.JDialog.setDefaultLookAndFeelDecorated( true);
 		try{
 			UIManager.setLookAndFeel(
 				this.lookandfeel != null ? this.lookandfeel :
