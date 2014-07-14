@@ -112,5 +112,5 @@ public abstract class Resource {
 		int dot_i = path.lastIndexOf( '.');
 		return dot_i >= 0 ?
 			path.substring( dot_i + 1) :
-			"";}
+			null;}
 }

@@ -31,14 +31,17 @@ public class JSONResource extends TextResource {
 
 	@Override
 	public void backup(){
+		super.backup();
 		root_backup = root;}
 	@Override
 	public void restore(){
 		root = root_backup;
-		root_backup = null;}
+		root_backup = null;
+		super.restore();}
 	@Override
 	public void clearBackup(){
-		root_backup = null;}
+		root_backup = null;
+		super.clearBackup();}
 
 	//accessor methods
 	public Object getRoot(){

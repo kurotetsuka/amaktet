@@ -94,7 +94,7 @@ public class Render {
 		drawSpriteTest( sniper);
 
 		//draw grid
-		//drawGrid( grid_width, grid_height);
+		//drawGrid( 16, 16);
 		//draw cursor
 		//drawCursor();
 		//clean up

@@ -29,7 +29,7 @@ public class GameExecutionThread extends Thread {
 	public void run(){
 		while( gui.isVisible()){
 			javax.swing.SwingUtilities.invokeLater( tick);
-			try{ Thread.sleep(30);}
+			try{ Thread.sleep( 30);}
 			catch( InterruptedException exception){}}}
 
 	//Private Classes

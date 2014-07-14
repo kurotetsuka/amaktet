@@ -1,6 +1,10 @@
+//this is the base config file.
+// it is used to generate files are merged into this one
 {
+	//
 	"include":[
-		"~/.game/user.json",
+		//
+		"~/.amaktet/user.json",
 		"config/prefs.json"],
 	"data":[
 		"data"],

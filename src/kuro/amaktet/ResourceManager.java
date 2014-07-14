@@ -72,25 +72,32 @@ public class ResourceManager implements ResourceListener {
 
 	public void load(){
 		for( Resource resource : resources){
+			//if the resource is needed
 			if( resource.isNeeded()){
+				//if its not resolved, resolve it
 				if( ! resource.isResolved())
 					try{ resolve( resource);}
 					catch( FileNotFoundException exception){
 						throw new RuntimeException(
 							"Loading of needed resource failed.", exception);}
+				//if its not loaded, load it
 				if( ! resource.isLoaded())
 					try{ resource.load();}
 					catch( ResourceLoadException exception){
 						throw new RuntimeException(
 							"Loading of needed resource failed.", exception);}
+				//if its outdated, update it
 				else if( resource.isDynamic() && resource.isOutdated())
 					try{ resource.reload( true);}
 					catch( ResourceLoadException exception){
 						throw new RuntimeException(
 							"Reloading of needed dynamic resource failed.",
 							exception);}}
+			//if the resource is not needed
 			else
+				//and loaded
 				if( resource.isLoaded())
+					//unload it
 					resource.unload();}}
 
 	//resource listener functions
