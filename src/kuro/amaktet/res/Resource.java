@@ -1,11 +1,11 @@
-package kuro.amaktet.resource;
+package kuro.amaktet.res;
 
 //standard library imports
 import java.io.File;
 import java.util.Vector;
 
 //local imports
-import kuro.amaktet.resource.event.*;
+import kuro.amaktet.res.event.*;
 
 public abstract class Resource {
 	//Public Fields

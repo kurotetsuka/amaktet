@@ -26,7 +26,7 @@ bin/kuro/amaktet/Game.class: \
 	bin/kuro/amaktet/asset/Tile.class \
 	bin/kuro/amaktet/asset/TileSet.class \
 	bin/kuro/amaktet/game/View.class \
-	bin/kuro/amaktet/resource/TextureResource.class \
+	bin/kuro/amaktet/res/TextureResource.class \
 	bin/kuro/amaktet/util/Timer.class
 
 bin/kuro/amaktet/GameExecutionThread.class: \
@@ -58,10 +58,10 @@ bin/kuro/amaktet/Render.class: \
 	bin/kuro/amaktet/game/View.class
 
 bin/kuro/amaktet/ResourceManager.class: \
-	bin/kuro/amaktet/resource/Resource.class \
-	bin/kuro/amaktet/resource/ResourceList.class \
-	bin/kuro/amaktet/resource/event/ResourceEvent.class \
-	bin/kuro/amaktet/resource/event/ResourceListener.class
+	bin/kuro/amaktet/res/Resource.class \
+	bin/kuro/amaktet/res/ResourceList.class \
+	bin/kuro/amaktet/res/event/ResourceEvent.class \
+	bin/kuro/amaktet/res/event/ResourceListener.class
 
 bin/kuro/amaktet/ConsoleManager.class: \
 	bin/kuro/amaktet/util/Console.class \
@@ -69,29 +69,28 @@ bin/kuro/amaktet/ConsoleManager.class: \
 	bin/kuro/amaktet/util/event/CommandListener.class
 
 #asset package
-
 bin/kuro/amaktet/asset/Cursor.class: \
 	bin/kuro/amaktet/game/Entity.class \
 	bin/kuro/amaktet/asset/Tile.class \
 	bin/kuro/amaktet/math/KVector.class \
 	bin/kuro/amaktet/math/Direction.class \
-	bin/kuro/amaktet/resource/TextureResource.class
+	bin/kuro/amaktet/res/TextureResource.class
 
 bin/kuro/amaktet/asset/Tile.class: \
-	bin/kuro/amaktet/resource/TextureResource.class
+	bin/kuro/amaktet/res/TextureResource.class
 
 bin/kuro/amaktet/asset/Sprite.class: \
-	bin/kuro/amaktet/resource/ResourceList.class \
-	bin/kuro/amaktet/resource/ResourceContainer.class \
-	bin/kuro/amaktet/resource/TextureResource.class \
-	bin/kuro/amaktet/resource/JSONResource.class
+	bin/kuro/amaktet/res/ResourceList.class \
+	bin/kuro/amaktet/res/ResourceContainer.class \
+	bin/kuro/amaktet/res/TextureResource.class \
+	bin/kuro/amaktet/res/JSONResource.class
 
 bin/kuro/amaktet/asset/TileSet.class: \
 	bin/kuro/amaktet/asset/Tile.class \
-	bin/kuro/amaktet/resource/ResourceList.class \
-	bin/kuro/amaktet/resource/ResourceContainer.class \
-	bin/kuro/amaktet/resource/TextureResource.class \
-	bin/kuro/amaktet/resource/JSONResource.class
+	bin/kuro/amaktet/res/ResourceList.class \
+	bin/kuro/amaktet/res/ResourceContainer.class \
+	bin/kuro/amaktet/res/TextureResource.class \
+	bin/kuro/amaktet/res/JSONResource.class
 
 #game package
 bin/kuro/amaktet/game/Cell.class: \
@@ -104,7 +103,7 @@ bin/kuro/amaktet/game/Entity.class:
 bin/kuro/amaktet/game/Map.class: \
 	bin/kuro/amaktet/game/Cell.class \
 	bin/kuro/amaktet/math/Dimension3D.class \
-	bin/kuro/amaktet/resource/JSONResource.class
+	bin/kuro/amaktet/res/JSONResource.class
 
 bin/kuro/amaktet/game/View.class: \
 	bin/kuro/amaktet/math/KDimension.class \
@@ -123,30 +122,30 @@ bin/kuro/amaktet/math/KDimension.class:
 bin/kuro/amaktet/math/KVector.class:
 
 #resource package
-bin/kuro/amaktet/resource/JSONResource.class: \
-	bin/kuro/amaktet/resource/TextResource.class
+bin/kuro/amaktet/res/JSONResource.class: \
+	bin/kuro/amaktet/res/TextResource.class
 
-bin/kuro/amaktet/resource/Resource.class: \
-	bin/kuro/amaktet/resource/event/ResourceEvent.class \
-	bin/kuro/amaktet/resource/event/ResourceListener.class \
-	bin/kuro/amaktet/resource/ResourceLoadException.class
+bin/kuro/amaktet/res/Resource.class: \
+	bin/kuro/amaktet/res/event/ResourceEvent.class \
+	bin/kuro/amaktet/res/event/ResourceListener.class \
+	bin/kuro/amaktet/res/ResourceLoadException.class
 
-bin/kuro/amaktet/resource/ResourceList.class: \
-	bin/kuro/amaktet/resource/ResourceContainer.class \
+bin/kuro/amaktet/res/ResourceList.class: \
+	bin/kuro/amaktet/res/ResourceContainer.class \
 
-bin/kuro/amaktet/resource/ResourceContainer.class: \
+bin/kuro/amaktet/res/ResourceContainer.class: \
 
-bin/kuro/amaktet/resource/TextResource.class: \
-	bin/kuro/amaktet/resource/Resource.class
+bin/kuro/amaktet/res/TextResource.class: \
+	bin/kuro/amaktet/res/Resource.class
 
-bin/kuro/amaktet/resource/TextureResource.class: \
-	bin/kuro/amaktet/resource/Resource.class
+bin/kuro/amaktet/res/TextureResource.class: \
+	bin/kuro/amaktet/res/Resource.class
 
 #resource.event package
-bin/kuro/amaktet/resource/event/ResourceEvent.class:
+bin/kuro/amaktet/res/event/ResourceEvent.class:
 
-bin/kuro/amaktet/resource/event/ResourceListener.class: \
-	bin/kuro/amaktet/resource/event/ResourceEvent.class
+bin/kuro/amaktet/res/event/ResourceListener.class: \
+	bin/kuro/amaktet/res/event/ResourceEvent.class
 
 #test package
 bin/kuro/amaktet/test/TestConsole.class: \

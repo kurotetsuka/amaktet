@@ -1,4 +1,4 @@
-package kuro.amaktet.resource.event;
+package kuro.amaktet.res.event;
 
 public class ResourceEvent extends java.util.EventObject {
 	private Type type;

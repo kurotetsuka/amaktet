@@ -1,4 +1,4 @@
-package kuro.amaktet.resource;
+package kuro.amaktet.res;
 
 //standard library imports
 import java.io.File;

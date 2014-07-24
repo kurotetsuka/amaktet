@@ -6,7 +6,7 @@ import java.awt.Dimension;
 import org.newdawn.slick.opengl.Texture;
 //local imports;
 import kuro.amaktet.math.KVector;
-import kuro.amaktet.resource.TextureResource;
+import kuro.amaktet.res.TextureResource;
 
 public class Cursor {
 	//public members
@@ -21,7 +21,7 @@ public class Cursor {
 	public Cursor(){
 		position = new KVector();
 		textureResource = new TextureResource(
-			"resource/ui/cursor.png");
+			"res/ui/cursor.png");
 		textureResource.setNeeded( true);
 		dimension = new Dimension( 40, 40);
 		halfDimension = new Dimension(

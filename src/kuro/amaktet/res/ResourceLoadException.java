@@ -1,4 +1,4 @@
-package kuro.amaktet.resource;
+package kuro.amaktet.res;
 
 public class ResourceLoadException extends RuntimeException {
 	public ResourceLoadException(){

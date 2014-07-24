@@ -8,8 +8,8 @@ import java.util.Iterator;
 import java.util.Vector;
 
 //local imports
-import kuro.amaktet.resource.*;
-import kuro.amaktet.resource.event.*;
+import kuro.amaktet.res.*;
+import kuro.amaktet.res.event.*;
 
 public class ResourceManager implements ResourceListener {
 	//private fields
@@ -79,19 +79,27 @@ public class ResourceManager implements ResourceListener {
 					try{ resolve( resource);}
 					catch( FileNotFoundException exception){
 						throw new RuntimeException(
-							"Loading of needed resource failed.", exception);}
+							String.format(
+								"Loading of needed resource {%s} failed.",
+								resource.getRelativePath()),
+							exception);}
 				//if its not loaded, load it
 				if( ! resource.isLoaded())
 					try{ resource.load();}
 					catch( ResourceLoadException exception){
 						throw new RuntimeException(
-							"Loading of needed resource failed.", exception);}
+							String.format(
+								"Loading of needed resource {%s} failed.",
+								resource.getRelativePath()),
+							exception);}
 				//if its outdated, update it
 				else if( resource.isDynamic() && resource.isOutdated())
 					try{ resource.reload( true);}
 					catch( ResourceLoadException exception){
 						throw new RuntimeException(
-							"Reloading of needed dynamic resource failed.",
+							String.format(
+								"Reloading of needed dynamic resource {%s} failed.",
+								resource.getRelativePath()),
 							exception);}}
 			//if the resource is not needed
 			else

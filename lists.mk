@@ -23,15 +23,15 @@ class_files = \
 	bin/kuro/amaktet/math/KDimension.class \
 	bin/kuro/amaktet/math/KVector.class \
 	bin/kuro/amaktet/Render.class \
-	bin/kuro/amaktet/resource/event/ResourceEvent.class \
-	bin/kuro/amaktet/resource/event/ResourceListener.class \
-	bin/kuro/amaktet/resource/JSONResource.class \
-	bin/kuro/amaktet/resource/Resource.class \
-	bin/kuro/amaktet/resource/ResourceContainer.class \
-	bin/kuro/amaktet/resource/ResourceList.class \
-	bin/kuro/amaktet/resource/ResourceLoadException.class \
-	bin/kuro/amaktet/resource/TextResource.class \
-	bin/kuro/amaktet/resource/TextureResource.class \
+	bin/kuro/amaktet/res/event/ResourceEvent.class \
+	bin/kuro/amaktet/res/event/ResourceListener.class \
+	bin/kuro/amaktet/res/JSONResource.class \
+	bin/kuro/amaktet/res/Resource.class \
+	bin/kuro/amaktet/res/ResourceContainer.class \
+	bin/kuro/amaktet/res/ResourceList.class \
+	bin/kuro/amaktet/res/ResourceLoadException.class \
+	bin/kuro/amaktet/res/TextResource.class \
+	bin/kuro/amaktet/res/TextureResource.class \
 	bin/kuro/amaktet/ResourceManager.class \
 	bin/kuro/amaktet/test/CursorTest.class \
 	bin/kuro/amaktet/test/TestConsole.class \

@@ -11,12 +11,12 @@ import org.json.simple.*;
 import kuro.json.JSONAdapter;
 
 //local imports
-import kuro.amaktet.resource.*;
+import kuro.amaktet.res.*;
 
 public class TileSet implements ResourceContainer {
 	//static fields
 	private static final String tilesetFolder =
-		"resource/tileset/";
+		"res/tileset/";
 
 	//private fields
 	private String name;

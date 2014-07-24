@@ -5,7 +5,7 @@ import java.util.Vector;
 
 //local imports
 import kuro.amaktet.math.Dimension3D;
-import kuro.amaktet.resource.JSONResource;
+import kuro.amaktet.res.JSONResource;
 
 public class Map {
 	//Public Fields

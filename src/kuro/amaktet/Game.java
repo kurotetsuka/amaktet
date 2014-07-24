@@ -7,7 +7,7 @@ import java.util.HashMap;
 //local imports
 import kuro.amaktet.asset.*;
 import kuro.amaktet.game.*;
-import kuro.amaktet.resource.*;
+import kuro.amaktet.res.*;
 import kuro.amaktet.util.*;
 
 public class Game {
@@ -39,9 +39,9 @@ public class Game {
 	public Game(){
 		//load resources
 		backgroundTextureResource = new TextureResource(
-			"resource/ui/bg.png");
+			"res/ui/bg.png");
 		gridTextureResource = new TextureResource(
-			"resource/ui/grid.png");
+			"res/ui/grid.png");
 		backgroundTextureResource.setNeeded( true);
 		gridTextureResource.setNeeded( true);
 

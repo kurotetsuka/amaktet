@@ -5,7 +5,7 @@ import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
 
 //local imports;
-import kuro.amaktet.resource.TextureResource;
+import kuro.amaktet.res.TextureResource;
 
 public class Tile {
 	//drawing fields

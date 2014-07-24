@@ -16,16 +16,17 @@ import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
 
 //local imports
-import kuro.amaktet.resource.*;
+import kuro.amaktet.res.*;
 
 public class Sprite implements ResourceContainer {
 	//static fields
 	private static final String spriteFolder =
-		"resource/sprite/";
+		"res/sprite/";
 
 	//private fields
 	private String name;
 	private ResourceList resources;
+	private TextureResource glowResource;
 	private TextureResource textureResource;
 	private JSONResource configResource;
 	private HashMap<String, Frame> map;
@@ -49,9 +50,11 @@ public class Sprite implements ResourceContainer {
 		map = new HashMap< String, Frame>();
 		String relativeName = spriteFolder + name;
 		//setup resources
-		textureResource = new TextureResource( relativeName + ".png");
+		glowResource = new TextureResource( relativeName + ".glo.png");
+		textureResource = new TextureResource( relativeName + ".tex.png");
 		configResource = new JSONResource( relativeName + ".json");
 		resources = new ResourceList();
+		resources.add( glowResource);
 		resources.add( textureResource);
 		resources.add( configResource);
 		//initialize properties
@@ -225,6 +228,10 @@ public class Sprite implements ResourceContainer {
 					"Loading frame %s of sprite %s failed\n",
 					frame_name, name);}}}
 
+	public TextureResource getGlowResource(){
+		return glowResource;}
+	public Texture getGlowmap(){
+		return glowResource.getTexture();}
 	public TextureResource getTextureResource(){
 		return textureResource;}
 	public Texture getTexture(){
@@ -264,6 +271,10 @@ public class Sprite implements ResourceContainer {
 		//get accessor functions
 		public String getName(){
 			return key;}
+		public TextureResource getGlowResource(){
+			return glowResource;}
+		public Texture getGlowmap(){
+			return glowResource.getTexture();}
 		public TextureResource getTextureResource(){
 			return textureResource;}
 		public Texture getTexture(){
