@@ -1,17 +1,22 @@
 ## current list
  * benchmarking
- * sound
 
 ## todo list
- * in-game/terminal console
- * custom class loader ( for mod support )
- * finalize config structure
  * finalize map data structure
- * controller support
- * dynamic resources
- * json merging
- * mod data structure
+ * finalize config structure
+ * sprite glow maps
+ * tile glow maps ?
  * sprite animation
+ * sound
+ * in-game/terminal console
+ * json merging
+ * dynamic resources
+ * custom class loader ( for mod support )
+ * controller support
+ * logging
+ * parallelize resource loading
 
 ## done list
+ * mod data structure
+ * change resource to res
 
