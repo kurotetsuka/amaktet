@@ -15,7 +15,7 @@ import kuro.amaktet.asset.TileSet;
 
 public class Controller implements
 		WindowListener, ComponentListener, ActionListener{
-	//Private Members
+	//private Members
 	private Game game;
 	private Gui gui;
 	private Render render;
@@ -24,13 +24,13 @@ public class Controller implements
 	private boolean debug = false;
 	private boolean mouseDragging = false;
 
-	//Constructors
+	//constructors
 	public Controller(){
 		game = null;
 		gui = null;
 		render = null;}
 
-	//Public methods
+	//public methods
 	public void connectTo( Game game){
 		this.game = game;}
 

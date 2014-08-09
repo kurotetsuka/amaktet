@@ -38,8 +38,7 @@ public class GameLoader {
 
 		//suppress slick-util debug output
 		DefaultLogSystem.out =
-			new PrintStream(
-				new NullOutputStream());
+			new PrintStream( new NullOutputStream());
 
 		//load loader gui
 		loaderGui = new LoaderGui();
