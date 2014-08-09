@@ -2,9 +2,7 @@
 default: build
 freshen: clean build
 clean:
-	rm -rf bin/*
-	rm -rf pkg/*
-	rm -rf jar/*
+	rm -rf bin/* jar/* pkg/*
 
 #variables
 version = 0.0.1
@@ -45,11 +43,6 @@ $(package_file): \
 package: $(package_file)
 package-test: package
 	file-roller $(package_file) &
-
-#other commands
-git-prepare:
-	git add -u
-	git add -A
 
 #test commands
 test: run
