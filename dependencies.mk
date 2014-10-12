@@ -134,6 +134,7 @@ bin/kuro/amaktet/res/ResourceList.class: \
 	bin/kuro/amaktet/res/ResourceContainer.class \
 
 bin/kuro/amaktet/res/ResourceContainer.class: \
+	bin/kuro/amaktet/res/Resource.class \
 
 bin/kuro/amaktet/res/TextResource.class: \
 	bin/kuro/amaktet/res/Resource.class
