@@ -6,11 +6,14 @@ clean:
 
 #variables
 version = 0.0.1
+jar_file = jar/amaktet-$(version).jar
+package_file = pkg/amaktet-$(version).tgz
+
 cp = bin:lib/*:lib/lwjgl/jar/*
 dest = -d bin
+java_version = -source 1.7 -target 1.7
+
 natives = -Djava.library.path=lib/lwjgl/native/linux
-jar_file = jar/amaktet-$(version).jar
-package_file = pkg/amaktet-$(version).tar.gz
 options =
 warnings =
 #warnings = -Xlint:deprecation

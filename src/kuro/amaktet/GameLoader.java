@@ -81,5 +81,5 @@ public class GameLoader {
 		execution.start();}
 
 	//Private classes
-	private class LoaderGui extends JFrame{}
+	private class LoaderGui extends JFrame {}
 }
