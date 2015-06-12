@@ -3,4 +3,3 @@ jdk:
   - openjdk7
 script:
  - make package
- - make test-tutorial
