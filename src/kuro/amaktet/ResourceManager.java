@@ -1,40 +1,40 @@
 package kuro.amaktet;
 
-//standard library imports
+// standard library imports
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.Vector;
 
-//local imports
+// local imports
 import kuro.amaktet.res.*;
 import kuro.amaktet.res.event.*;
 
 public class ResourceManager implements ResourceListener {
-	//private fields
+	// private fields
 	private Vector<Path> paths;
 	private ResourceList resources;
-	private boolean debug = false;
+	private boolean debug = true;
 
-	//constructor
+	// constructor
 	public ResourceManager(){
 		paths = new Vector<Path>();
-		//find possible paths
+		// find possible paths
 		Path classloc = new File( getClass().getProtectionDomain().getCodeSource().getLocation().getPath()).toPath();
 		Path pwd = new File(
 			System.getProperty("user.dir")).toPath();
-		//add paths
+		// add paths
 		paths.add( pwd);
 		paths.add( classloc.getParent());
-		if( debug)
+		/*if( debug)
 			for( Path path : paths)
-				System.out.println( path);
+				System.out.println( path);*/
 
-		//other fields
+		// other fields
 		resources = new ResourceList();}
 
-	//functions
+	// functions
 	public void addResourcePath( Path path){
 		paths.add( path);}
 
@@ -52,10 +52,10 @@ public class ResourceManager implements ResourceListener {
 
 	public void resolve( Resource resource)
 			throws FileNotFoundException {
-		//try to locate file
+		// try to locate file
 		String relative_path = resource.getRelativePath();
 		File resolved_path = locate( relative_path);
-		//did we find it?
+		// did we find it?
 		if( resolved_path == null)
 			throw new FileNotFoundException(
 				String.format(
@@ -64,17 +64,19 @@ public class ResourceManager implements ResourceListener {
 		else
 			resource.setResolvedPath( resolved_path);}
 
-
 	public void resolve( Iterable<Resource> resources){
 		for( Resource resource : resources)
 			try{ resolve( resource);}
 			catch( FileNotFoundException exception){}}
 
+	public void update(){
+		if( debug) load();}
+
 	public void load(){
 		for( Resource resource : resources){
-			//if the resource is needed
+			// if the resource is needed
 			if( resource.isNeeded()){
-				//if its not resolved, resolve it
+				// if its not resolved, resolve it
 				if( ! resource.isResolved())
 					try{ resolve( resource);}
 					catch( FileNotFoundException exception){
@@ -83,7 +85,7 @@ public class ResourceManager implements ResourceListener {
 								"Loading of needed resource {%s} failed.",
 								resource.getRelativePath()),
 							exception);}
-				//if its not loaded, load it
+				// if its not loaded, load it
 				if( ! resource.isLoaded())
 					try{ resource.load();}
 					catch( ResourceLoadException exception){
@@ -92,23 +94,22 @@ public class ResourceManager implements ResourceListener {
 								"Loading of needed resource {%s} failed.",
 								resource.getRelativePath()),
 							exception);}
-				//if its outdated, update it
-				else if( resource.isDynamic() && resource.isOutdated())
+				// if its outdated, update it
+				if( resource.isDynamic() && resource.isOutdated()){
 					try{ resource.reload( true);}
 					catch( ResourceLoadException exception){
 						throw new RuntimeException(
 							String.format(
 								"Reloading of needed dynamic resource {%s} failed.",
 								resource.getRelativePath()),
-							exception);}}
-			//if the resource is not needed
+							exception);}}}
+			// if the resource is not needed
 			else
-				//and loaded
+				// and loaded, unload it
 				if( resource.isLoaded())
-					//unload it
 					resource.unload();}}
 
-	//resource listener functions
+	// resource listener functions
 	public void resourceOutdated( ResourceEvent event){}
 	public void resourceUpdated( ResourceEvent event){}
 }

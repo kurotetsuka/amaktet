@@ -1,20 +1,20 @@
 package kuro.amaktet.res;
 
-//standard library imports
+// standard library imports
 import java.util.Vector;
 import java.util.Collection;
 
 public class ResourceList
 		extends Vector<Resource>
 		implements ResourceContainer {
-	//fields
+	// fields
 	public int loaded;
 
-	//constructor
+	// constructor
 	public ResourceList(){
 		this.loaded = 0;}
 
-	//methods
+	// methods
 	public void load(){
 		for( Resource resource : this)
 			if( ! resource.isLoaded())
@@ -41,10 +41,12 @@ public class ResourceList
 				return false;
 		return true;}
 
-	//ResourceContainer functions
 	public void setNeeded( boolean needed){
 		for( Resource resource : this)
 			resource.setNeeded( needed);}
+	public void setDynamic( boolean dynamic){
+		for( Resource resource : this)
+			resource.setDynamic( dynamic);}
 
 	public Collection<Resource> getResources(){
 		return this;}

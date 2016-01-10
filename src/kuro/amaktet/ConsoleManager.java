@@ -1,26 +1,26 @@
 package kuro.amaktet;
 
-//standard library imports
+// standard library imports
 import java.util.Vector;
 
-//local imports
+// local imports
 import kuro.amaktet.util.Console;
 import kuro.amaktet.util.event.CommandEvent;
 import kuro.amaktet.util.event.CommandListener;
 
 public class ConsoleManager implements CommandListener{
-	//fields
+	// fields
 	private Console standard_console;
 	private Vector<Console> consoles;
 	private Vector<CommandListener> listeners;
 
-	//constructors
+	// constructors
 	public ConsoleManager(){
 		consoles = new Vector<Console>();
 		listeners = new Vector<CommandListener>();
 		standard_console = null;}
 
-	//public functions
+	// public functions
 	public void setStandardConsoleEnabled( boolean enabled){
 		if( enabled){
 			if( standard_console == null){
@@ -33,20 +33,20 @@ public class ConsoleManager implements CommandListener{
 			standard_console.stop();
 			standard_console = null;}}
 
-	//adds
+	// adds
 	public void addCommandListener( CommandListener listener){
 		listeners.add( listener);}
 	public void addConsole( Console console){
 		consoles.add( console);
 		console.addCommandListener( this);}
-	//removes
+	// removes
 	public void removeCommandListener( CommandListener listener){
 		listeners.remove( listener);}
 	public void removeConsole( Console console){
 		consoles.remove( console);
 		console.removeCommandListener( this);}
 
-	//prints
+	// prints
 	// print
 	public void print( Object object){
 		for( Console console : consoles)
@@ -66,7 +66,7 @@ public class ConsoleManager implements CommandListener{
 		for( Console console : consoles)
 			console.printf( string, args);}
 
-	//command listener handles
+	// command listener handles
 	public void commandReceived( CommandEvent event){
 		for( CommandListener listener : listeners)
 			listener.commandReceived( event);}

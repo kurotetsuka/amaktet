@@ -1,16 +1,16 @@
 package kuro.amaktet.util.event;
 
-//standard library imports
+// standard library imports
 import java.util.Arrays;
 import java.util.EventObject;
 
 public class CommandEvent extends EventObject {
-	//fields
+	// fields
 	private String command;
 	private String line;
 	private String[] args;
 
-	//constructor
+	// constructor
 	public CommandEvent( Object source, String line){
 		super( source);
 		this.line = line;
@@ -21,7 +21,7 @@ public class CommandEvent extends EventObject {
 			Arrays.copyOfRange( split, 1, split.length) :
 			new String[0];}
 
-	//accessors
+	// accessors
 	public String getCommand(){
 		return command;}
 	public String getLine(){

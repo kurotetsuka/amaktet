@@ -1,5 +1,5 @@
 package kuro.amaktet.util;
-//standard library imports
+// standard library imports
 import java.io.OutputStream;
 
 public class NullOutputStream extends OutputStream {

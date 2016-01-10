@@ -1,14 +1,14 @@
 package kuro.amaktet.game;
 
-//standard library imports
+// standard library imports
 import java.awt.Dimension;
 import java.awt.Point;
-//local imports
+// local imports
 import kuro.amaktet.math.KDimension;
 import kuro.amaktet.math.KVector;
 
 public class View {
-	//public members
+	// public members
 	public Dimension dimension;
 	public Dimension halfDimension;
 	public KVector position;
@@ -16,12 +16,12 @@ public class View {
 	public double zoom_level;
 	public double zoom_target;
 	public Point zoom_centre;
-	//config parameters
+	// config parameters
 	public double zoom_period;
-	//private members
+	// private members
 
 
-	//constructors
+	// constructors
 	public View(){
 		dimension = new Dimension();
 		halfDimension = new Dimension();
@@ -30,48 +30,48 @@ public class View {
 		zoom_level = 1.0;
 		zoom_target = zoom_level;
 		zoom_centre = new Point( 0, 0);
-		//config defaults
+		// config defaults
 		zoom_period = 0.1;}
 
-	//public methods
+	// public methods
 	public void updateDimensions( Dimension dimension){
 		this.dimension = dimension;
 		this.halfDimension.width = dimension.width / 2;
 		this.halfDimension.height = dimension.height / 2;}
 
 	public KVector relativize( Point point){
-		//apply viewport
+		// apply viewport
 		KVector result = new KVector(
 			point.x - halfDimension.width,
 			point.y - halfDimension.height);
-		//apply zoom
+		// apply zoom
 		result.x /= zoom_level;
 		result.y /= zoom_level;
-		//apply translation
+		// apply translation
 		result.x += position.x;
 		result.y += position.y;
-		//done
+		// done
 		return result;}
 
 	public Point derelativize( KVector vector){
-		//make copy
+		// make copy
 		KVector result = new KVector( vector);
-		//unapply translation
+		// unapply translation
 		result.x -= position.x;
 		result.y -= position.y;
-		//unapply zoom
+		// unapply zoom
 		result.x *= zoom_level;
 		result.y *= zoom_level;
-		//unapply viewport
+		// unapply viewport
 		result.x += halfDimension.width;
 		result.y += halfDimension.height;
-		//round
+		// round
 		return new Point(
 			Math.round( result.x), Math.round( result.y));}
 
 	public void timeStep( double dtime){
 		double dzoom = dtime / zoom_period;
-		//step the zoom level
+		// step the zoom level
 		if( zoom_level != zoom_target){
 			KVector prezoom = relativize( zoom_centre);
 			zoom_level = ( ( 1.0 - dzoom) * zoom_level)
@@ -82,7 +82,7 @@ public class View {
 			position_target.add( diff);
 		}
 
-		//step the position
+		// step the position
 		position.x = (float)((( 1.0 - dzoom) * position.x)
 			+( dzoom * position_target.x));
 		position.y = (float)((( 1.0 - dzoom) * position.y)
@@ -103,6 +103,6 @@ public class View {
 			dx * 0.1 * dimension.width,
 			dy * 0.1 * dimension.width);}
 
-	//private methods
+	// private methods
 
 }

@@ -1,23 +1,23 @@
 package kuro.amaktet.asset;
 
-//LWJGL imports
+// LWJGL imports
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
 
-//local imports;
+// local imports;
 import kuro.amaktet.res.TextureResource;
 
 public class Tile {
-	//drawing fields
+	// drawing fields
 	private TextureResource textureResource;
-	//game fields
+	// game fields
 	private String key;
 	private int tx;
 	private int ty;
 	private int twidth;
 	private int theight;
 
-	//constructor
+	// constructor
 	public Tile( String key, int tx, int ty,
 			int twidth, int theight,
 			TextureResource textureResource){
@@ -28,7 +28,7 @@ public class Tile {
 		this.theight = theight;
 		this.textureResource = textureResource;}
 
-	//public functions
+	// public functions
 	public void bind( int rx, int ry){
 		Texture atlas = textureResource.getTexture();
 		int atlas_width = atlas.getTextureWidth();
@@ -41,7 +41,7 @@ public class Tile {
 				y /= (float) atlas_height;
 		GL11.glTexCoord2f( x, y);}
 
-	//get accessor functions
+	// get accessor functions
 	public String getName(){
 		return key;}
 	public TextureResource getTextureResource(){

@@ -1,6 +1,6 @@
 package kuro.amaktet.util;
 
-//standard library imports
+// standard library imports
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
@@ -11,12 +11,12 @@ import java.io.OutputStreamWriter;
 import java.util.PriorityQueue;
 import java.util.Vector;
 
-//local imports
+// local imports
 import kuro.amaktet.util.event.CommandEvent;
 import kuro.amaktet.util.event.CommandListener;
 
 public class Console {
-	//fields
+	// fields
 	private InputStream input;
 	private OutputStream output;
 	private PriorityQueue<String> input_queue;
@@ -34,7 +34,7 @@ public class Console {
 	public Console( InputStream input, OutputStream output){
 		input_queue = new PriorityQueue<String>();
 		output_queue = new PriorityQueue<String>();
-		//null checks!
+		// null checks!
 		this.input = input;
 		this.output = output;
 		input_thread = null;
@@ -44,7 +44,7 @@ public class Console {
 		listeners = new Vector<CommandListener>();
 		consumer_thread = new CommandConsumerThread();}
 
-	//adds
+	// adds
 	public void setInputStream( InputStream input){
 		synchronized( input_thread_lock){
 			if( input_thread != null)
@@ -62,7 +62,7 @@ public class Console {
 	public OutputStream getOutputStream(){
 		return this.output;}
 
-	//prints
+	// prints
 	// print
 	public void print( Object object){
 		print( object.toString());}
@@ -83,13 +83,13 @@ public class Console {
 		else
 			print( String.format( string, args));}
 
-	//adds/removes
+	// adds/removes
 	public void addCommandListener( CommandListener listener){
 		listeners.add( listener);}
 	public void removeCommandListener( CommandListener listener){
 		listeners.remove( listener);}
 
-	//event invokations
+	// event invokations
 	private void invokeCommandReceived( String command){
 		CommandEvent event = new CommandEvent( this, command);
 		for( CommandListener listener : listeners )
@@ -98,42 +98,42 @@ public class Console {
 			catch( Exception exception){
 				exception.printStackTrace();}}
 
-	//other public methods
+	// other public methods
 	public void start(){
-		//stop consumer thread
+		// stop consumer thread
 		consumer_thread.start();
-		//stop input thread
+		// stop input thread
 		synchronized( input_thread_lock){
 			input_thread = new InputThread( input);
 			input_thread.start();}
-		//stop output thread
+		// stop output thread
 		synchronized( output_thread_lock){
 			output_thread = new OutputThread( output);
 			output_thread.start();}}
 
 	public void stop(){
-		//stop consumer thread
+		// stop consumer thread
 		consumer_thread.requestStop();
-		//stop input thread
+		// stop input thread
 		synchronized( input_thread_lock){
 			if( input_thread != null)
 				input_thread.close();}
-		//stop output thread
+		// stop output thread
 		synchronized( output_thread_lock){
 			if( output_thread != null)
 				output_thread.close();}}
 
-	//confirms
+	// confirms
 	private void confirmInputStopped(){
-		//synchronized for protection
+		// synchronized for protection
 		synchronized( input_thread_lock){
 			input_thread = null;}}
 	private void confirmOutputStopped(){
-		//synchronized for protection
+		// synchronized for protection
 		synchronized( output_thread_lock){
 			output_thread = null;}}
 
-	//subclasses
+	// subclasses
 	public class CommandConsumerThread extends Thread {
 		private int pollingDelay;
 		public boolean stop_requested;
@@ -144,11 +144,11 @@ public class Console {
 
 		public void run(){
 			while( ! stop_requested){
-				//turn queued input into a command
+				// turn queued input into a command
 				String command = input_queue.poll();
 				if( command != null)
 					invokeCommandReceived( command);
-				//sleep a little
+				// sleep a little
 				try{ Thread.sleep( pollingDelay);}
 				catch( InterruptedException exception){}}}
 
@@ -157,13 +157,13 @@ public class Console {
 	}
 
 	private class InputThread extends Thread {
-		//fields
+		// fields
 		private BufferedReader source;
 		private boolean close_requested;
 		private String line;
 		private int pollingDelay;
 
-		//constructor
+		// constructor
 		public InputThread( InputStream source){
 			this.source = new BufferedReader(
 				new InputStreamReader( source));
@@ -171,24 +171,24 @@ public class Console {
 			this.close_requested = false;
 			this.pollingDelay = 1;}
 
-		//functions
+		// functions
 		public void run(){
 			try{
 				while( ! close_requested){
-					//wait a little
+					// wait a little
 					try{ Thread.sleep( pollingDelay);}
 					catch( InterruptedException exception){}
 					try {
-						//read any input
+						// read any input
 						while( source.ready()){
-							//read a char
+							// read a char
 							int char_int = source.read();
-							//catch end of file?
+							// catch end of file?
 							if( char_int < 0){
 								System.out.println("End of file?");
 								break;}
 							char ch = (char) char_int;
-							//catch end of line
+							// catch end of line
 							if( ch == '\n'){
 								input_queue.add( line);
 								line = new String();}
@@ -197,13 +197,13 @@ public class Console {
 					catch( IOException exception){
 						System.err.println( exception.getStackTrace());
 						break;}}
-				//try to close
+				// try to close
 				try{ source.close();}
 				catch( IOException exception){
 					System.err.printf(
 						"Error closing input in Console %s input thread:\n%s",
 						Console.this.toString(), exception.getStackTrace());}}
-			//catch any really bad shit
+			// catch any really bad shit
 			catch( Exception exception){
 				System.err.printf(
 					"Error in Console %s input thread:\n%s",
@@ -216,48 +216,48 @@ public class Console {
 	}
 
 	private class OutputThread extends Thread {
-		//fields
+		// fields
 		private BufferedWriter output;
 		private boolean close_requested;
 		private int pollingDelay;
 
-		//constructor
+		// constructor
 		public OutputThread( OutputStream output){
 			this.output = new BufferedWriter(
 				new OutputStreamWriter( output));
 			this.close_requested = false;
 			this.pollingDelay = 1;}
 
-		//functions
+		// functions
 		public void run(){
 			try{
 				while( ! close_requested){
-					//sleep for some time
+					// sleep for some time
 					try{ Thread.sleep( pollingDelay);}
 					catch( InterruptedException exception){}
 					try {
-						//write any queued output
+						// write any queued output
 						while( ! output_queue.isEmpty()){
 							String string = output_queue.poll();
 							if( string == null) continue;
 							output.write( string, 0, string.length());}
 						output.flush();}
-					//catch the bad shit
+					// catch the bad shit
 					catch( IOException exception){
 						System.err.println( exception.getStackTrace());
 						break;}}
-				//try to close output stream
+				// try to close output stream
 				try{ output.close();}
 				catch( IOException exception){
 					System.err.printf(
 						"Error closing output in Console %s output thread:\n%s",
 						Console.this.toString(), exception.getStackTrace());}}
-			//catch any really bad shit
+			// catch any really bad shit
 			catch( Exception exception){
 				System.err.printf(
 					"Error in Console %s output thread:\n%s",
 					Console.this.toString(), exception.getStackTrace());;}
-			//confirm that we're done
+			// confirm that we're done
 			finally{
 				confirmOutputStopped();}}
 

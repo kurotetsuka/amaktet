@@ -7,7 +7,7 @@ public class ResourceEvent extends java.util.EventObject {
 		super( source);
 		this.type = type;}
 
-	//subclasses
+	// subclasses
 	public enum Type {
 		OUTDATED, UPDATED
 	}

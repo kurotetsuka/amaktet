@@ -1,18 +1,18 @@
 package kuro.amaktet.util;
 
 public class Timer {
-	//fields
+	// fields
 	public double time_old;
 	public double time;
 	public double dtime;
 	
-	//constructor
+	// constructor
 	public Timer(){
 		time = getTime();
 		time_old = time;
 		dtime = 0;}
 	
-	//methods
+	// methods
 	public void update(){
 		time_old = time;
 		time = getTime();

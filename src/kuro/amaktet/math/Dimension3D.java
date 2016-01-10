@@ -1,12 +1,12 @@
 package kuro.amaktet.math;
 
-//standard library imports
+// standard library imports
 import java.awt.Dimension;
 
 public class Dimension3D extends Dimension {
 	public int depth;
 
-	//constructors
+	// constructors
 	public Dimension3D(){
 		width = 0;
 		depth = 0;
@@ -24,7 +24,7 @@ public class Dimension3D extends Dimension {
 		this.height = height;
 		this.depth = 0;}
 
-	//overload methods
+	// overload methods
 	@Override
 	public void setSize( Dimension other){
 		if( other instanceof Dimension3D)

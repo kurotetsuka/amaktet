@@ -20,7 +20,7 @@ warnings =
 
 #includes
 include lists.mk
-include dependencies.mk
+include deps.mk
 
 #compilation definitions
 $(class_files): bin/%.class : src/%.java

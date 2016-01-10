@@ -1,40 +1,40 @@
 package kuro.amaktet;
 
-//standard Library imports
+// standard Library imports
 import java.awt.Point;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.util.Collection;
 import java.util.Vector;
 
-//lwjgl imports
+// lwjgl imports
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 
-//local imports
+// local imports
 import kuro.amaktet.asset.*;
 import kuro.amaktet.game.*;
 
 public class Render {
-	//Public members
+	// Public members
 	public Object loadLock;
 
-	//Private members
+	// Private members
 	private Game game;
 	private Cursor cursor;
 	private View view;
 
-	//Constructors
+	// Constructors
 	public Render( Game game){
-		//initialize public members
+		// initialize public members
 		loadLock = new Object();
-		//initialize private members
+		// initialize private members
 		this.game = game;
 		this.cursor = game.cursor;
 		this.view = game.view;}
 
-	//public methods
+	// public methods
 	public void linkToCanvas( Canvas canvas){
 		try{
 			Display.setParent( canvas);}
@@ -47,7 +47,7 @@ public class Render {
 				Display.create();}
 			catch( LWJGLException exception) {
 				exception.printStackTrace();}
-			//initialize opengl
+			// initialize opengl
 			resize();
 			GL11.glEnable( GL11.GL_BLEND);
 			GL11.glEnable( GL11.GL_TEXTURE_2D);
@@ -73,37 +73,39 @@ public class Render {
 		updateDimensions();
 		return view.dimension;}
 
-	//draw methods
+	// draw methods
+	public void update(){
+		this.draw();}
 	public void draw(){
 		updateView();
-		//Clear the screen and depth buffer
+		// clear the screen and depth buffer
 		GL11.glClear(
 			GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 
-		//draw background
+		// draw background
 		drawBackground();
 
-		//draw the game view
+		// draw the game view
 		enableViewTransfomation();
 
-		//draw test tile
-		//drawTestTile();
+		// draw test tile
+		// drawTestTile();
 
-		//draw test sprite
+		// draw test sprite
 		Sprite sniper = game.getSprite("ally/sniper");
 		drawSpriteTest( sniper);
 
-		//draw grid
-		//drawGrid( 16, 16);
-		//draw cursor
-		//drawCursor();
-		//clean up
+		// draw grid
+		// drawGrid( 16, 16);
+		// draw cursor
+		// drawCursor();
+		// clean up
 		disableViewTransformation();
 
 		Display.update();}
 
 	public void drawSpriteTest( Sprite sprite){
-		//draw test sprite
+		// draw test sprite
 		Vector<Sprite.Frame> frames = new Vector<Sprite.Frame>();
 		frames.add( sprite.get( "male.normal.1"));
 		frames.add( sprite.get( "male.normal.2"));
@@ -179,6 +181,7 @@ public class Render {
 				GL11.glPopMatrix();}
 			if( stop) break;}
 		GL11.glPopMatrix();}
+
 	public void drawBackground(){
 		game.backgroundTextureResource.getTexture().bind();
 		float halfWidth = view.halfDimension.width;
@@ -195,9 +198,10 @@ public class Render {
 		GL11.glTexCoord2f( 0, 0);
 		GL11.glVertex3f( - halfWidth, + halfHeight, Layer.Background);
 		GL11.glEnd();}
+
 	public void drawCursor(){
 		cursor.getTexture().bind();
-		//draw quad
+		// draw quad
 		GL11.glBegin( GL11.GL_QUADS);
 		GL11.glTexCoord2f(0,0);
 		GL11.glVertex3f(
@@ -220,6 +224,7 @@ public class Render {
 			cursor.position.y + cursor.halfDimension.height,
 			Layer.Cursor);
 		GL11.glEnd();}
+
 	public void drawGrid( int grid_width, int grid_height){
 		game.gridTextureResource.getTexture().bind();
 		GL11.glBegin( GL11.GL_QUADS);
@@ -232,13 +237,14 @@ public class Render {
 		GL11.glTexCoord2f( 0, grid_height);
 		GL11.glVertex3f( -320.0f, +320.0f, Layer.Grid);
 		GL11.glEnd();}
+
 	public void drawTestTile(){
 		Tile tile;
-		tile = game.getTile( "chest_open");
-		//tile = game.getTile( "chest_closed");
-		//tile = game.getTile( "null");
-		//tile = game.getTile( "stairs");
-		//tile = game.getTile( "asdf");
+		// tile = game.getTile( "chest_open");
+		// tile = game.getTile( "chest_closed");
+		// tile = game.getTile( "null");
+		// tile = game.getTile( "stairs");
+		tile = game.getTile( "asdf");
 		if( tile == null) return;
 		tile.getTexture().bind();
 		GL11.glBegin( GL11.GL_QUADS);
@@ -251,6 +257,7 @@ public class Render {
 		tile.bind( 0, 0);
 		GL11.glVertex3f( -320.0f, +320.0f, Layer.Tile);
 		GL11.glEnd();}
+
 	public void drawSpriteFrame( Sprite.Frame frame){
 		frame.getTexture().bind();
 		GL11.glBegin( GL11.GL_QUADS);
@@ -264,7 +271,7 @@ public class Render {
 		GL11.glVertex3f( -320.0f, +320.0f, Layer.Tile);
 		GL11.glEnd();}
 
-	//Private Methods
+	// private Methods
 	private void updateDimensions(){
 		Canvas parent = Display.getParent();
 		view.updateDimensions( 
@@ -286,7 +293,7 @@ public class Render {
 	private void disableViewTransformation(){
 		GL11.glPopMatrix();}
 
-	//Sub-classes
+	// sub-classes
 	public static final class Layer {
 		public static final float Bottom = -1.0f;
 		public static final float Background = -0.1f;

@@ -1,10 +1,10 @@
 package kuro.amaktet.math;
 
-//java imports
+// java imports
 import java.util.Vector;
 
 public class Direction {
-	//constant directions
+	// constant directions
 	// null direction
 	public final static Direction ZERO = new Direction( Data.ZERO);
 	// x,y-plane directions
@@ -16,13 +16,13 @@ public class Direction {
 	public final static Direction UP = new Direction( Data.UP);
 	public final static Direction DOWN = new Direction( Data.DOWN);
 
-	//information fields
+	// information fields
 	private final static int COUNT = 7;
 
-	//actual data
+	// actual data
 	private Data data;
 
-	//constructors
+	// constructors
 	public Direction(){
 		this( ZERO);}
 	public Direction( Data data){
@@ -30,7 +30,7 @@ public class Direction {
 	public Direction( Direction other){
 		this.data = other.data;}
 
-	//public override methods
+	// public override methods
 	@Override
 	public boolean equals( Object other_o){
 		if( !( other_o instanceof Direction))
@@ -41,7 +41,7 @@ public class Direction {
 				return this.data == other.data;}
 			catch( Exception exception){
 				return false;}}
-	//public static methods
+	// public static methods
 	public static int count(){
 		return COUNT;}
 	public static Vector<Direction> getDirections(){
@@ -55,7 +55,7 @@ public class Direction {
 		directions.add( DOWN);
 		return directions;}
 
-	//public methods
+	// public methods
 	public Data getData(){
 		return data;}
 	public Direction inverse(){

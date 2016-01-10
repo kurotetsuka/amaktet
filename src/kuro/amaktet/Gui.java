@@ -1,28 +1,28 @@
 package kuro.amaktet;
 
-//standard library imports
+// standard library imports
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 
-//local imports
+// local imports
 import kuro.amaktet.gui.*;
 
 public class Gui extends JFrame {
-	//Public variables
+	// Public variables
 	public CustomCardLayout cards;
 	public Container frame;
 	public JPanel panel;
 	public JLayeredPane layers;
-	//Panels
+	// Panels
 	public GamePanel gamePanel;
 	public TestPanel testPanel;
 
-	//Private variables
+	// Private variables
 	private boolean fullscreen_enabled;
 
-	//Constructors
+	// Constructors
 	public Gui(){
 		fullscreen_enabled = false;
 		cards = null;
@@ -30,42 +30,42 @@ public class Gui extends JFrame {
 		panel = null;}
 
 	public void load(){
-		//setup
+		// setup
 		this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE);
 		this.setTitle( "Game Window");
-		//this.setUndecorated( true);
-		//this.setExtendedState( JFrame.MAXIMIZED_BOTH);
+		// this.setUndecorated( true);
+		// this.setExtendedState( JFrame.MAXIMIZED_BOTH);
 		
-		//get frame
+		// get frame
 		frame = getContentPane();
 
-		//main panel
+		// main panel
 		cards =  new CustomCardLayout();
 		panel = new JPanel( cards);
 
-		//create panels
+		// create panels
 		gamePanel = new GamePanel();
 		testPanel = new TestPanel();
 
-		//add panels
+		// add panels
 		panel.add( gamePanel, gamePanel.NAME);
 		panel.add( testPanel, testPanel.NAME);
 
-		//add main panel
+		// add main panel
 		frame.add( panel);
 
-		//done, show everything
-		//testPanel.switchTo();
+		// done, show everything
+		// testPanel.switchTo();
 		gamePanel.switchTo();
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);}
 
-	//Methods
+	// Methods
 	public void close(){
-		//hide window
+		// hide window
 		this.setVisible( false);
-		//post closing event
+		// post closing event
 		WindowEvent wev = 
 			new WindowEvent( this, WindowEvent.WINDOW_CLOSING);
 		Toolkit.getDefaultToolkit().
@@ -75,15 +75,15 @@ public class Gui extends JFrame {
 		if( fullscreen_enabled == fullscreen) return;
 		fullscreen_enabled = fullscreen;
 		if( fullscreen){
-			//this.setUndecorated( true);
+			// this.setUndecorated( true);
 			this.setExtendedState( JFrame.MAXIMIZED_BOTH);}
 		else{
-			//this.setUndecorated( false);
+			// this.setUndecorated( false);
 			this.setExtendedState( JFrame.NORMAL);}}
 	public boolean getFullscreen(){
 		return fullscreen_enabled;}
 
-	//Subclasses
+	// Subclasses
 	protected class CustomCardLayout extends CardLayout {
 		@Override
 		public Dimension preferredLayoutSize(Container parent) {
@@ -111,14 +111,14 @@ public class Gui extends JFrame {
 			cards.show( panel, NAME);}
 	}
 
-	//Panel subclasses
+	// Panel subclasses
 	protected class GamePanel extends CustomJPanel{
-		//public variables
+		// public variables
 		public Canvas canvas;
-		//constructor
+		// constructor
 		public GamePanel(){
 			super( "GamePanel");
-			//set up layout
+			// set up layout
 			GridBagLayout layout = new GridBagLayout();
 			this.setLayout( layout);
 			GridBagConstraints constraints = new GridBagConstraints();
@@ -129,7 +129,7 @@ public class Gui extends JFrame {
 			constraints.fill = GridBagConstraints.NONE;
 			constraints.insets = new Insets( 0, 0, 0, 0);
 
-			//add canvas
+			// add canvas
 			canvas = new Canvas();
 			canvas.setMinimumSize(
 				new Dimension( 800, 600));
@@ -143,7 +143,7 @@ public class Gui extends JFrame {
 			constraints.anchor = GridBagConstraints.CENTER;
 			this.add( canvas, constraints);
 
-			//set cursor
+			// set cursor
 			// Transparent 16 x 16 pixel cursor image
 			BufferedImage cursorImg = new BufferedImage(
 				16, 16, BufferedImage.TYPE_INT_ARGB);
@@ -152,13 +152,13 @@ public class Gui extends JFrame {
 				Toolkit.getDefaultToolkit().createCustomCursor(
 					cursorImg, new Point(0, 0), "blank cursor");*/
 			// Set the blank cursor to the panel
-			//this.setCursor( blankCursor);
-			//this.setCursor( new Cursor( Cursor.DEFAULT_CURSOR));
+			// this.setCursor( blankCursor);
+			// this.setCursor( new Cursor( Cursor.DEFAULT_CURSOR));
 		}
 	}
 	protected class TestPanel extends CustomJPanel{
 		public JButton button;
-		//constructor
+		// constructor
 		public TestPanel(){
 			super("Test");
 			button = new JButton("Test Button");

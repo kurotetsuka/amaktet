@@ -1,7 +1,7 @@
 package kuro.amaktet.math;
 
 public class KVector extends org.lwjgl.util.vector.Vector2f {
-	//constructors
+	// constructors
 	public KVector(){
 		super();}
 	public KVector( KVector other){
@@ -10,7 +10,7 @@ public class KVector extends org.lwjgl.util.vector.Vector2f {
 	public KVector( float x, float y){
 		super( x, y);}
 
-	//methods
+	// methods
 	public KVector add( KVector other){
 		this.x += other.x;
 		this.y += other.y;

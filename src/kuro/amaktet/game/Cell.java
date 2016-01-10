@@ -1,31 +1,31 @@
 package kuro.amaktet.game;
 
-//standard library imports
+// standard library imports
 import java.util.EnumMap;
 import java.util.Vector;
-//local imports
+// local imports
 import kuro.amaktet.asset.Tile;
 import kuro.amaktet.math.Direction;
 
 public class Cell {
-	//Public Fields
+	// Public Fields
 	protected Tile tile;
 	protected Entity entity;
 
-	//Private Fields
+	// Private Fields
 	protected EnumMap<Direction.Data, Cell> neighbours;
 
-	//Constuctors
+	// Constuctors
 	public Cell( Tile tile){
-		//public fields
+		// public fields
 		this.tile = tile;
 		this.entity = null;
 
-		//private fields
+		// private fields
 		this.neighbours = new EnumMap<Direction.Data, Cell>(
 			Direction.Data.class);}
 
-	//get accessors
+	// get accessors
 	public Cell getNeighbour( Direction direction){
 		if( direction.equals( Direction.ZERO))
 			throw new RuntimeException(
@@ -36,7 +36,7 @@ public class Cell {
 	public Entity getEntity(){
 		return entity;}
 
-	//set accessors
+	// set accessors
 	public void setNeighbour( Direction direction, Cell other){
 		if( direction.equals( Direction.ZERO))
 			throw new RuntimeException(

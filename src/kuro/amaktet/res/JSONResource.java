@@ -1,6 +1,6 @@
 package kuro.amaktet.res;
 
-//json simple imports
+// json simple imports
 import org.json.simple.*;
 import org.json.simple.parser.*;
 
@@ -8,12 +8,12 @@ public class JSONResource extends TextResource {
 	Object root;
 	Object root_backup;
 
-	//constructors
+	// constructors
 	public JSONResource( String relative_path){
 		super( relative_path);
 		root = null;}
 
-	//overload methods
+	// overload methods
 	@Override
 	public void load(){
 		super.load();
@@ -43,7 +43,7 @@ public class JSONResource extends TextResource {
 		root_backup = null;
 		super.clearBackup();}
 
-	//accessor methods
+	// accessor methods
 	public Object getRoot(){
 		return root;}
 }

@@ -1,14 +1,14 @@
 package kuro.amaktet.test;
 
-//local imports
+// local imports
 import kuro.amaktet.util.*;
 
 public class TestInputStreamHandler
 		implements InputStreamListener {
-	//fields
+	// fields
 	static InputStreamHandler handler;
 
-	//constructors
+	// constructors
 	public TestInputStreamHandler(){
 		handler = new InputStreamHandler( System.in);
 		handler.addListener( this);
@@ -16,7 +16,7 @@ public class TestInputStreamHandler
 		try{ Thread.sleep( 2000);}
 		catch( InterruptedException exception){}}
 
-	//input stream listener functions
+	// input stream listener functions
 	public void inputReceived( InputStreamEvent event){
 		String data = event.getDataString();
 		System.out.printf(
@@ -24,7 +24,7 @@ public class TestInputStreamHandler
 		if( data.equals( "exit"))
 			handler.close();}
 
-	//static functions
+	// static functions
 	public static void main( String[] args){
 		new TestInputStreamHandler();}
 }

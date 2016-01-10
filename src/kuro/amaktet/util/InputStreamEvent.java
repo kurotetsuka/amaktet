@@ -1,21 +1,21 @@
 package kuro.amaktet.util;
 
-//standard library imports
+// standard library imports
 import java.util.EventObject;
 
 public class InputStreamEvent extends EventObject {
-	//fields
+	// fields
 	private byte[] data;
 	private Type type;
 
-	//constructors
+	// constructors
 	public InputStreamEvent(
 			Object source, byte[] data, Type type){
 		super( source);
 		this.data = data;
 		this.type = type;}
 
-	//accessor methods
+	// accessor methods
 	public byte[] getData(){
 		return data;}
 	public String getDataString(){
@@ -23,7 +23,7 @@ public class InputStreamEvent extends EventObject {
 	public Type getType(){
 		return type;}
 
-	//subclasses
+	// subclasses
 	public enum Type {
 		INPUT_RECEIVED}
 }

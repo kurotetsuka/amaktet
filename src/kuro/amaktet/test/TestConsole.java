@@ -1,9 +1,9 @@
 package kuro.amaktet.test;
 
-//standard library imports
+// standard library imports
 
 
-//local imports
+// local imports
 import kuro.amaktet.ConsoleManager;
 import kuro.amaktet.util.Console;
 import kuro.amaktet.util.event.CommandEvent;

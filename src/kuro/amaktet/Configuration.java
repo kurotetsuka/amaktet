@@ -1,6 +1,6 @@
 package kuro.amaktet;
 
-//standard library imports
+// standard library imports
 import java.awt.Font;
 import java.io.File;
 import java.util.Enumeration;
@@ -8,7 +8,7 @@ import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
-//ini4j imports
+// ini4j imports
 import org.ini4j.Ini;
 
 public class Configuration{
@@ -17,7 +17,7 @@ public class Configuration{
 	private Ini.Section meta_section;
 	private Ini.Section gui_section;
 
-	//gui config
+	// gui config
 	private String lookandfeel;
 	
 	public Configuration(){
@@ -26,10 +26,10 @@ public class Configuration{
 		meta_section = null;
 		file = null;
 
-		//initialize other variables
+		// initialize other variables
 		lookandfeel = null;}
 
-	//open file
+	// open file
 	public void open( File file)
 			throws java.io.IOException{
 		this.file = file;
@@ -37,17 +37,17 @@ public class Configuration{
 		ini.load(file);
 
 		meta_section = ini.get( "Meta");
-		//check if this configuration file is enabled or not
+		// check if this configuration file is enabled or not
 		if( meta_section != null){
 			String data = meta_section.get( "enabled");
 			boolean enabled = Boolean.parseBoolean( data);
 			if( enabled){
-				//get file sections
+				// get file sections
 				gui_section = ini.get( "Gui");}}}
 
-	//load methods
+	// load methods
 	public void load(){
-		//load config from gui section
+		// load config from gui section
 		String lookandfeel = gui_section.get("lookandfeel");
 		String lookandfeel_custom = gui_section.get("lookandfeel_custom");
 		if( lookandfeel != null)
@@ -76,22 +76,22 @@ public class Configuration{
 	public void multiplyGuiFontSize( double multiplier){
 		UIDefaults defaults = UIManager.getDefaults();
 		Enumeration keys = defaults.keys();
-		//for all keys in ui defaults
+		// for all keys in ui defaults
 		while( keys.hasMoreElements()){
 			Object key = keys.nextElement();
 			Object value = defaults.get( key);
-			//select those values that represent fonts
+			// select those values that represent fonts
 			if (value instanceof Font) {
-				//multiply their sice
+				// multiply their sice
 				Font font = (Font) value;
 				int newSize = (int) Math.round(
 					font.getSize() * multiplier);
-				//select the appropriate class constructor
+				// select the appropriate class constructor
 				value = value instanceof FontUIResource ?
 					new FontUIResource(
 						font.getName(), font.getStyle(), newSize) :
 					new Font(
 						font.getName(), font.getStyle(), newSize);
-				//write the key
+				// write the key
 				defaults.put( key, value);}}}
 }

@@ -4,7 +4,7 @@ class_files = \
 	bin/kuro/amaktet/asset/Cursor.class \
 	bin/kuro/amaktet/asset/Sprite.class \
 	bin/kuro/amaktet/asset/Tile.class \
-	bin/kuro/amaktet/asset/TileSet.class \
+	bin/kuro/amaktet/asset/Tileset.class \
 	bin/kuro/amaktet/Configuration.class \
 	bin/kuro/amaktet/ConsoleManager.class \
 	bin/kuro/amaktet/Controller.class \

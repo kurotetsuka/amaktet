@@ -1,23 +1,23 @@
 package kuro.amaktet.asset;
 
-//standard library imports
+// standard library imports
 import java.awt.Dimension;
-//LWJGL imports
+// LWJGL imports
 import org.newdawn.slick.opengl.Texture;
-//local imports;
+// local imports;
 import kuro.amaktet.math.KVector;
 import kuro.amaktet.res.TextureResource;
 
 public class Cursor {
-	//public members
+	// public members
 	public KVector position;
 	public Dimension dimension;
 	public Dimension halfDimension;
-	//private members
+	// private members
 	// set to private when resource lists are implemented properly
 	public TextureResource textureResource;
 
-	//constructors
+	// constructors
 	public Cursor(){
 		position = new KVector();
 		textureResource = new TextureResource(
@@ -27,7 +27,7 @@ public class Cursor {
 		halfDimension = new Dimension(
 			dimension.width / 2, dimension.height / 2);}
 
-	//functions
+	// functions
 	public Texture getTexture(){
 		return textureResource.getTexture();}
 }

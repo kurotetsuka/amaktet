@@ -1,11 +1,11 @@
 package kuro.amaktet.test;
 
-//standard Library imports
+// standard Library imports
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-//lwjgl imports
+// lwjgl imports
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
@@ -29,7 +29,7 @@ public class CursorTest extends JFrame {
 
 		canvas.setCursor( new Cursor( Cursor.WAIT_CURSOR));
 
-		//init lwjgl
+		// init lwjgl
 		try{
 			Display.setParent( canvas);
 			Display.create();}

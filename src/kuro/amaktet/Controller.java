@@ -1,44 +1,44 @@
 package kuro.amaktet;
 
-//standard library imports
+// standard library imports
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-//lwjgl imports
+// lwjgl imports
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.LWJGLException;
 
-//local imports
-import kuro.amaktet.asset.TileSet;
+// local imports
+// import kuro.amaktet.asset.Tileset;
 
 public class Controller implements
 		WindowListener, ComponentListener, ActionListener{
-	//private Members
+	// private Members
 	private Game game;
 	private Gui gui;
 	private Render render;
 
-	//private fields
+	// private fields
 	private boolean debug = false;
 	private boolean mouseDragging = false;
 
-	//constructors
+	// constructors
 	public Controller(){
 		game = null;
 		gui = null;
 		render = null;}
 
-	//public methods
+	// public methods
 	public void connectTo( Game game){
 		this.game = game;}
 
 	public void connectTo( Gui gui){
 		this.gui = gui;
-		//window event registration
+		// window event registration
 		gui.addWindowListener( this);
-		//component event registration
+		// component event registration
 		gui.addComponentListener( this);
 		gui.panel.addComponentListener( this);
 		gui.gamePanel.addComponentListener( this);
@@ -52,8 +52,8 @@ public class Controller implements
 		mouseUpdate();
 		keyboardUpdate();}
 
-	//Event handles
-	//Action handles
+	// Event handles
+	// Action handles
 	public void actionPerformed( ActionEvent event){
 		String command = event.getActionCommand();
 		switch( command){
@@ -63,14 +63,14 @@ public class Controller implements
 				break;
 			default: break;}}
 
-	//Component handles
+	// Component handles
 	public void componentHidden( ComponentEvent event){}
 	public void componentMoved( ComponentEvent event){}
 	public void componentResized( ComponentEvent event){
 		render.resize();}
 	public void componentShown( ComponentEvent event){}
 
-	//Window handles
+	// Window handles
 	public void windowActivated( WindowEvent event){}
 	public void windowClosed( WindowEvent event){}
 	public void windowClosing( WindowEvent event){
@@ -82,86 +82,93 @@ public class Controller implements
 	public void windowIconified( WindowEvent event){}
 	public void windowOpened( WindowEvent event){}
 
-	//Private methods
-	//Mouse handle
+	// Private methods
+	// Mouse handle
 	private void mouseUpdate(){
 		Point mouse_position = new Point(
 			Mouse.getX(), Mouse.getY());
 		Point mouse_velocity = new Point(
 			Mouse.getDX(), Mouse.getDY());
-		boolean mouse_0down = Mouse.isButtonDown( 0);
-		boolean mouse_1down = Mouse.isButtonDown( 1);
-		boolean mouse_2down = Mouse.isButtonDown( 2);
-		//set cursor if dragging
-		if( mouse_0down && ! mouseDragging){
+		boolean mouse0_down = Mouse.isButtonDown( 0);
+		boolean mouse1_down = Mouse.isButtonDown( 1);
+		boolean mouse2_down = Mouse.isButtonDown( 2);
+		// set cursor if dragging
+		if( mouse0_down && ! mouseDragging){
 			gui.setCursor( new Cursor( Cursor.MOVE_CURSOR));}
-		else if( ! mouse_0down && mouseDragging){
+		else if( ! mouse0_down && mouseDragging){
 			gui.setCursor( Cursor.getDefaultCursor());}
-		//update cursor location
+		// update cursor location
 		game.cursor.position = game.view.relativize( mouse_position);
-		//mouse draging
+		// mouse draging
 		if( mouseDragging)
 			game.view.move(
 				- mouse_velocity.x, - mouse_velocity.y);
-		mouseDragging = mouse_0down;
-		//check for mouse wheel changes
+		mouseDragging = mouse0_down;
+		// check for mouse wheel changes
 		int scrollTicks = Mouse.getDWheel() / 120;
 		if( scrollTicks != 0)
-			//zoom in on cursor
+			// zoom in on cursor
 			game.view.zoom( scrollTicks, mouse_position);}
 
-	//LWJGL Keyboard handle
+	// LWJGL Keyboard handle
 	private void keyboardUpdate(){
 		while( Keyboard.next()){
 			int key = Keyboard.getEventKey();
-			char keyChar = Keyboard.getEventCharacter();
-			boolean keyDown = Keyboard.getEventKeyState();
+			char key_char = Keyboard.getEventCharacter();
+			boolean key_down = Keyboard.getEventKeyState();
 			boolean repeat = Keyboard.isRepeatEvent();
 			if( debug)
 				System.out.printf( "Key Pressed: %d, %b, %b\n",
-					key, keyDown, repeat);
+					key, key_down, repeat);
 			switch( key){
-				case Keyboard.KEY_ESCAPE:{
-					gui.close();
-					break;}
-				//movement
+				// movement
 				case Keyboard.KEY_W:{
-					if( keyDown)
+					if( key_down)
 						game.view.stepMove( 0, + 1);
 					break;}
 				case Keyboard.KEY_S:{
-					if( keyDown)
+					if( key_down)
 						game.view.stepMove( 0, - 1);
 					break;}
 				case Keyboard.KEY_A:{
-					if( keyDown)
+					if( key_down)
 						game.view.stepMove( - 1, 0);
 					break;}
 				case Keyboard.KEY_D:{
-					if( keyDown)
+					if( key_down)
 						game.view.stepMove( + 1, 0);
 					break;}
-				//switch to options panel
+				// reload all resources
+				case Keyboard.KEY_R:{
+					if( key_down)
+						game.refreshResources();
+					break;}
+				// switch to options panel
 				case Keyboard.KEY_Z:{
 					gui.testPanel.switchTo();
 					break;}
-				//go fullscreen
+				// exit
+				case Keyboard.KEY_Q:
+				case Keyboard.KEY_ESCAPE:{
+					gui.close();
+					break;}
+				// go fullscreen
 				case Keyboard.KEY_F11:{
-					if( keyDown)
+					if( key_down)
 						gui.setFullscreen( ! gui.getFullscreen());
 					break;}
-				//zoom
-				case 201:{ //page up
-					if( keyDown)
+				// zoom
+				case 201:{ // page up
+					if( key_down)
 						game.view.zoom( 1);
 					break;}
-				case 209:{ //page down
-					if( keyDown)
+				case 209:{ // page down
+					if( key_down)
 						game.view.zoom( - 1);
 					break;}
-				//debug
-				case Keyboard.KEY_C:{ //enter
-					if( keyDown)
+				// debug
+				case Keyboard.KEY_C:{ // enter
+					if( key_down)
 						debug = ! debug;
 					break;}}}}
 }

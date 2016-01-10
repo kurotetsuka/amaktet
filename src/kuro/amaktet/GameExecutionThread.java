@@ -1,10 +1,10 @@
 package kuro.amaktet;
 
-//local imports
+// local imports
 import kuro.amaktet.util.Timer;
 
 public class GameExecutionThread extends Thread {
-	//Private members
+	// Private members
 	private Controller controller;
 	private Game game;
 	private Gui gui;
@@ -12,7 +12,7 @@ public class GameExecutionThread extends Thread {
 	private Tick tick;
 	private Timer timer;
 
-	//Constructor
+	// Constructor
 	public GameExecutionThread(
 			Controller controller,
 			Game game,
@@ -32,13 +32,13 @@ public class GameExecutionThread extends Thread {
 			try{ Thread.sleep( 30);}
 			catch( InterruptedException exception){}}}
 
-	//Private Classes
+	// Private Classes
 	private class Tick implements Runnable {
 		public void run(){
 			if( render.isLoaded()){
 				timer.update();
 				controller.update();
 				game.update();
-				render.draw();}}
+				render.update();}}
 	}
 }

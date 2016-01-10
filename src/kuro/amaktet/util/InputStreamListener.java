@@ -1,6 +1,6 @@
 package kuro.amaktet.util;
 
-//standard library imports
+// standard library imports
 import java.util.EventListener;
 
 public interface InputStreamListener extends EventListener{

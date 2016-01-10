@@ -1,18 +1,18 @@
 package kuro.amaktet;
 
-//standard library imports
+// standard library imports
 import java.io.File;
 import java.io.PrintStream;
 import javax.swing.JFrame;
 
-//lwjgl imports
+// lwjgl imports
 import org.newdawn.slick.util.DefaultLogSystem;
 
-//local imports
+// local imports
 import kuro.amaktet.util.*;
 
 public class GameLoader {
-	//Public members
+	// Public members
 	public Configuration config;
 	public Controller controller;
 	public Game game;
@@ -20,12 +20,12 @@ public class GameLoader {
 	public Render render;
 	public ResourceManager resourceManager;
 	public Timer timer;
-	//Private members
+	// Private members
 	private LoaderGui loaderGui;
 
-	//Constructors
+	// Constructors
 	public GameLoader(String[] args){
-		//load configuration
+		// load configuration
 		config = new Configuration();
 		File config_meta = new File( "config/meta.ini");
 		if( config_meta.exists())
@@ -36,50 +36,51 @@ public class GameLoader {
 		config.load();
 		config.applyGuiSettings();
 
-		//suppress slick-util debug output
+		// suppress slick-util debug output
 		DefaultLogSystem.out =
 			new PrintStream( new NullOutputStream());
 
-		//load loader gui
+		// load loader gui
 		loaderGui = new LoaderGui();
 
-		//load game
+		// load game
 		game = new Game();
 
-		//load gui
+		// load gui
 		gui = new Gui();
 		gui.load();
 
-		//load render
+		// load render
 		render = new Render( game);
 		render.linkToCanvas( gui.gamePanel.canvas);
 		render.load();
 		
-		//load controller
+		// load controller
 		controller = new Controller();
 		controller.connectTo( game);
 		controller.connectTo( gui);
 		controller.connectTo( render);
 
-		//load resource manager
+		// load resource manager
 		resourceManager = new ResourceManager();
 		game.setResourceManager( resourceManager);
 
-		//load timer
+		// load timer
 		timer = new Timer();
 		game.setTimer( timer);
 
-		//link and load persistant resources
-		game.linkPersistantResources();
-		resourceManager.load();
-		game.loadTileSets();
+		// link and load persistant resources
+		game.loadTilesets();
 		game.loadSprites();
+		game.linkResources();
+		resourceManager.load();
+		game.loadTileData();
 
-		//start game execution
+		// start game execution
 		GameExecutionThread execution = new GameExecutionThread(
 			controller, game, gui, render, timer);
 		execution.start();}
 
-	//Private classes
+	// Private classes
 	private class LoaderGui extends JFrame {}
 }

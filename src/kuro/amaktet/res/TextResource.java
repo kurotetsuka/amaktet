@@ -1,21 +1,21 @@
 package kuro.amaktet.res;
 
-//standard library imports
+// standard library imports
 import java.io.File;
 import java.util.Scanner;
 
 public class TextResource extends Resource {
-	//fields
+	// fields
 	protected String data;
 	private String data_backup;
 
-	//constructor
+	// constructor
 	public TextResource( String relative_path){
 		super( relative_path);
 		data = null;
 		data_backup = null;}
 
-	//overload methods
+	// overload methods
 	@Override
 	public void load(){
 		super.load();
@@ -49,7 +49,7 @@ public class TextResource extends Resource {
 	public void clearBackup(){
 		data_backup = null;}
 
-	//accessor methods
+	// accessor methods
 	public String getData(){
 		return data;}
 }

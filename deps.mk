@@ -24,7 +24,7 @@ bin/kuro/amaktet/Game.class: \
 	bin/kuro/amaktet/game/Map.class \
 	bin/kuro/amaktet/asset/Sprite.class \
 	bin/kuro/amaktet/asset/Tile.class \
-	bin/kuro/amaktet/asset/TileSet.class \
+	bin/kuro/amaktet/asset/Tileset.class \
 	bin/kuro/amaktet/game/View.class \
 	bin/kuro/amaktet/res/TextureResource.class \
 	bin/kuro/amaktet/util/Timer.class
@@ -54,7 +54,7 @@ bin/kuro/amaktet/Render.class: \
 	bin/kuro/amaktet/Game.class \
 	bin/kuro/amaktet/asset/Cursor.class \
 	bin/kuro/amaktet/asset/Sprite.class \
-	bin/kuro/amaktet/asset/TileSet.class \
+	bin/kuro/amaktet/asset/Tileset.class \
 	bin/kuro/amaktet/game/View.class
 
 bin/kuro/amaktet/ResourceManager.class: \
@@ -85,7 +85,7 @@ bin/kuro/amaktet/asset/Sprite.class: \
 	bin/kuro/amaktet/res/TextureResource.class \
 	bin/kuro/amaktet/res/JSONResource.class
 
-bin/kuro/amaktet/asset/TileSet.class: \
+bin/kuro/amaktet/asset/Tileset.class: \
 	bin/kuro/amaktet/asset/Tile.class \
 	bin/kuro/amaktet/res/ResourceList.class \
 	bin/kuro/amaktet/res/ResourceContainer.class \
