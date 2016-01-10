@@ -89,22 +89,28 @@ public class Render {
 		enableViewTransfomation();
 
 		// draw test tile
-		// drawTestTile();
+		Tile tile;
+		tile = game.getTile( "chest_open");
+		//tile = game.getTile( "chest_closed");
+		//tile = game.getTile( "null");
+		//tile = game.getTile( "stairs");
+		//tile = game.getTile( "asdf");
+		drawTileTest( tile);
 
 		// draw test sprite
 		Sprite sniper = game.getSprite("ally/sniper");
-		drawSpriteTest( sniper);
+		//drawSpriteTest( sniper);
+		//drawSpriteFrameTest( sniper);
 
-		// draw grid
-		// drawGrid( 16, 16);
 		// draw cursor
-		// drawCursor();
+		drawCursor();
 		// clean up
 		disableViewTransformation();
 
 		Display.update();}
 
-	public void drawSpriteTest( Sprite sprite){
+	public void drawSpriteTest( Sprite sprite){}
+	public void drawSpriteFrameTest( Sprite sprite){
 		// draw test sprite
 		Vector<Sprite.Frame> frames = new Vector<Sprite.Frame>();
 		frames.add( sprite.get( "male.normal.1"));
@@ -238,13 +244,7 @@ public class Render {
 		GL11.glVertex3f( -320.0f, +320.0f, Layer.Grid);
 		GL11.glEnd();}
 
-	public void drawTestTile(){
-		Tile tile;
-		// tile = game.getTile( "chest_open");
-		// tile = game.getTile( "chest_closed");
-		// tile = game.getTile( "null");
-		// tile = game.getTile( "stairs");
-		tile = game.getTile( "asdf");
+	public void drawTileTest( Tile tile){
 		if( tile == null) return;
 		tile.getTexture().bind();
 		GL11.glBegin( GL11.GL_QUADS);
@@ -256,7 +256,12 @@ public class Render {
 		GL11.glVertex3f( +320.0f, +320.0f, Layer.Tile);
 		tile.bind( 0, 0);
 		GL11.glVertex3f( -320.0f, +320.0f, Layer.Tile);
-		GL11.glEnd();}
+		GL11.glEnd();
+
+		// draw grid?
+		//drawGrid( 16, 16);
+		//drawGrid( 1, 1);
+		return;}
 
 	public void drawSpriteFrame( Sprite.Frame frame){
 		frame.getTexture().bind();
