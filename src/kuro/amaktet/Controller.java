@@ -15,7 +15,7 @@ import org.lwjgl.LWJGLException;
 
 public class Controller implements
 		WindowListener, ComponentListener, ActionListener{
-	// private Members
+	// private members
 	private Game game;
 	private Gui gui;
 	private Render render;
@@ -23,6 +23,12 @@ public class Controller implements
 	// private fields
 	private boolean debug = false;
 	private boolean mouseDragging = false;
+
+	// constatns
+	private static final Cursor CURSOR_MOVE =
+		new Cursor( Cursor.MOVE_CURSOR);
+	private static final Cursor CURSOR_DEFAULT =
+		Cursor.getDefaultCursor();
 
 	// constructors
 	public Controller(){
@@ -71,19 +77,25 @@ public class Controller implements
 	public void componentShown( ComponentEvent event){}
 
 	// Window handles
-	public void windowActivated( WindowEvent event){}
-	public void windowClosed( WindowEvent event){}
+	public void windowActivated( WindowEvent event){
+		if( debug) System.out.println("Window activated");}
+	public void windowClosed( WindowEvent event){
+		if( debug) System.out.println("Window closed");}
 	public void windowClosing( WindowEvent event){
 		if( debug) System.out.println("Window closing");
 		render.unload();
 		if( debug) System.out.println("Renderer unloaded");}
-	public void windowDeactivated( WindowEvent event){}
-	public void windowDeiconified( WindowEvent event){}
-	public void windowIconified( WindowEvent event){}
-	public void windowOpened( WindowEvent event){}
+	public void windowDeactivated( WindowEvent event){
+		if( debug) System.out.println("Window deactivated");}
+	public void windowDeiconified( WindowEvent event){
+		if( debug) System.out.println("Window deiconified");}
+	public void windowIconified( WindowEvent event){
+		if( debug) System.out.println("Window iconified");}
+	public void windowOpened( WindowEvent event){
+		if( debug) System.out.println("Window opened");}
 
-	// Private methods
-	// Mouse handle
+	// private methods
+	// mouse handle
 	private void mouseUpdate(){
 		Point mouse_position = new Point(
 			Mouse.getX(), Mouse.getY());
@@ -92,11 +104,17 @@ public class Controller implements
 		boolean mouse0_down = Mouse.isButtonDown( 0);
 		boolean mouse1_down = Mouse.isButtonDown( 1);
 		boolean mouse2_down = Mouse.isButtonDown( 2);
-		// set cursor if dragging
+		if( debug)
+			System.out.printf( "mouse: %d,%d %d,%d\n",
+				mouse_position.x,
+				mouse_position.y,
+				mouse_velocity.x,
+				mouse_velocity.y);
+		// set cursor if dragging left button
 		if( mouse0_down && ! mouseDragging){
-			gui.setCursor( new Cursor( Cursor.MOVE_CURSOR));}
+			gui.setCursor( CURSOR_MOVE);}
 		else if( ! mouse0_down && mouseDragging){
-			gui.setCursor( Cursor.getDefaultCursor());}
+			gui.setCursor( CURSOR_DEFAULT);}
 		// update cursor location
 		game.cursor.position = game.view.relativize( mouse_position);
 		// mouse draging
@@ -110,7 +128,7 @@ public class Controller implements
 			// zoom in on cursor
 			game.view.zoom( scrollTicks, mouse_position);}
 
-	// LWJGL Keyboard handle
+	// lwjgl keyboard handle
 	private void keyboardUpdate(){
 		while( Keyboard.next()){
 			int key = Keyboard.getEventKey();

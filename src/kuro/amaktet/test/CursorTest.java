@@ -25,9 +25,6 @@ public class CursorTest extends JFrame {
 		frame.add( canvas);
 		this.pack();
 		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-
-		canvas.setCursor( new Cursor( Cursor.WAIT_CURSOR));
 
 		// init lwjgl
 		try{
@@ -35,13 +32,23 @@ public class CursorTest extends JFrame {
 			Display.create();}
 		catch( LWJGLException exception){
 			exception.printStackTrace();}
+		this.setVisible(true);
+		canvas.setCursor( new Cursor( Cursor.WAIT_CURSOR));
 
-		/*MouseEvent event = 
-			new MouseEvent( this, MouseEvent.WINDOW_CLOSING);
-		Toolkit.getDefaultToolkit().
-			getSystemEventQueue().postEvent( event);*/
 
-		canvas.setCursor( new Cursor( Cursor.DEFAULT_CURSOR));
+		/**/
+		int[] window_event_codes = new int[]{ 
+				WindowEvent.WINDOW_LOST_FOCUS,
+				WindowEvent.WINDOW_GAINED_FOCUS};
+		for( int code : window_event_codes){
+			WindowEvent event = 
+				new WindowEvent( this, code);
+			Toolkit.getDefaultToolkit().
+				getSystemEventQueue().postEvent( event);}
+		/**/
+
+		//canvas.setCursor( new Cursor( Cursor.WAIT_CURSOR));
+		//canvas.setCursor( new Cursor( Cursor.DEFAULT_CURSOR));
 
 		System.out.println("Done");}
 }

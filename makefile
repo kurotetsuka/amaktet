@@ -50,8 +50,8 @@ package-test: package
 #test commands
 test: run
 
-test-cursor: bin/test/CursorTest.class
-	java -cp $(cp) $(natives) test.CursorTest
+test-cursor: bin/kuro/amaktet/test/CursorTest.class
+	java -cp $(cp) $(natives) kuro.amaktet.test.CursorTest
 
 test-inputstreamhandler: bin/kuro/amaktet/test/TestInputStreamHandler.class
 	java -cp $(cp) kuro.amaktet.test.TestInputStreamHandler

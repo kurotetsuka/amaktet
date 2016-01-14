@@ -33,8 +33,8 @@ public class Gui extends JFrame {
 		// setup
 		this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE);
 		this.setTitle( "Game Window");
-		// this.setUndecorated( true);
-		// this.setExtendedState( JFrame.MAXIMIZED_BOTH);
+		//this.setUndecorated( true);
+		//this.setExtendedState( JFrame.MAXIMIZED_BOTH);
 		
 		// get frame
 		frame = getContentPane();
@@ -58,8 +58,7 @@ public class Gui extends JFrame {
 		// testPanel.switchTo();
 		gamePanel.switchTo();
 		this.pack();
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);}
+		this.setLocationRelativeTo( null);}
 
 	// Methods
 	public void close(){
@@ -143,17 +142,16 @@ public class Gui extends JFrame {
 			constraints.anchor = GridBagConstraints.CENTER;
 			this.add( canvas, constraints);
 
-			// set cursor
+			/*/ set cursor
 			// Transparent 16 x 16 pixel cursor image
 			BufferedImage cursorImg = new BufferedImage(
 				16, 16, BufferedImage.TYPE_INT_ARGB);
-			// Create a new blank cursor
-			/*Cursor blankCursor =
+			Cursor blankCursor =
 				Toolkit.getDefaultToolkit().createCustomCursor(
-					cursorImg, new Point(0, 0), "blank cursor");*/
-			// Set the blank cursor to the panel
-			// this.setCursor( blankCursor);
-			// this.setCursor( new Cursor( Cursor.DEFAULT_CURSOR));
+					cursorImg, new Point(0, 0), "blank cursor");
+			// set the blank cursor to the panel
+			this.setCursor( blankCursor);
+			this.setCursor( new Cursor( Cursor.DEFAULT_CURSOR));*/
 		}
 	}
 	protected class TestPanel extends CustomJPanel{

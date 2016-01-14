@@ -5,9 +5,6 @@ import java.io.File;
 import java.io.PrintStream;
 import javax.swing.JFrame;
 
-// lwjgl imports
-import org.newdawn.slick.util.DefaultLogSystem;
-
 // local imports
 import kuro.amaktet.util.*;
 
@@ -37,7 +34,7 @@ public class GameLoader {
 		config.applyGuiSettings();
 
 		// suppress slick-util debug output
-		DefaultLogSystem.out =
+		org.newdawn.slick.util.DefaultLogSystem.out =
 			new PrintStream( new NullOutputStream());
 
 		// load loader gui
@@ -54,12 +51,13 @@ public class GameLoader {
 		render = new Render( game);
 		render.linkToCanvas( gui.gamePanel.canvas);
 		render.load();
-		
+
 		// load controller
 		controller = new Controller();
 		controller.connectTo( game);
 		controller.connectTo( gui);
 		controller.connectTo( render);
+		//controller.update();
 
 		// load resource manager
 		resourceManager = new ResourceManager();
@@ -75,6 +73,9 @@ public class GameLoader {
 		game.linkResources();
 		resourceManager.load();
 		game.loadTileData();
+
+		//show window
+		gui.setVisible( true);
 
 		// start game execution
 		GameExecutionThread execution = new GameExecutionThread(
